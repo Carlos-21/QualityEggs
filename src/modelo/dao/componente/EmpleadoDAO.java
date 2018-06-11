@@ -5,7 +5,10 @@
  */
 package modelo.dao.componente;
 
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import modelo.dao.DataBaseConexion;
@@ -86,6 +89,24 @@ public class EmpleadoDAO implements IEmpleadoDAO{
         else{
             return false;
         }
+    }
+
+    @Override
+    public ArrayList<Empleado> listarEmpleado() {
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        MongoDatabase base = DataBaseConexion.getBaseDatos();
+        MongoCollection coleccion = base.getCollection("Empleado");
+        
+        FindIterable<Document> documentos = coleccion.find(); 
+        for (Document doc : documentos) {
+            Empleado empleado = new Empleado();
+            empleado.setUsuario(doc.getString("Usuario"));
+            empleado.setContraseña(doc.getString("Contraseña"));
+            empleado.setCargo(doc.getString("Cargo"));
+            empleado.setFechIngreso(doc.getDate("FechaIngreso"));
+            empleados.add(empleado);
+        }
+        return empleados;
     }
     
 }

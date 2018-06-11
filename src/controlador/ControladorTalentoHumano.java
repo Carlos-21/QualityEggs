@@ -7,6 +7,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import modelo.dao.componente.EmpleadoDAO;
 import modelo.dao.componente.PersonaDAO;
 import modelo.vistas.ModeloTalentoHumano;
@@ -17,7 +19,7 @@ import vista.TalentoHumano.VentanaPrincipal;
  *
  * @author CARLOS
  */
-public class ControladorTalentoHumano implements ActionListener{
+public class ControladorTalentoHumano implements ActionListener, KeyListener{
     private VentanaPrincipal vista;
     private ModeloTalentoHumano modelo;
 
@@ -44,6 +46,21 @@ public class ControladorTalentoHumano implements ActionListener{
             vista.setLocationRelativeTo(null);
             
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

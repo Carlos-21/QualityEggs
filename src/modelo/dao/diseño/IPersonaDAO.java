@@ -5,6 +5,7 @@
  */
 package modelo.dao.diseño;
 
+import java.util.ArrayList;
 import modelo.dao.dato.Persona;
 
 /**
@@ -15,4 +16,5 @@ public interface IPersonaDAO {
     public abstract boolean insertarPersona(Persona persona);
     public abstract boolean actualizarPersona(Persona persona);
     public abstract boolean eliminarPersona(String DNI);
+    public abstract ArrayList<Persona> listarPersona();
 }

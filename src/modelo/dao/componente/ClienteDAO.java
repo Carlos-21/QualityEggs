@@ -6,6 +6,7 @@
 package modelo.dao.componente;
 
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import modelo.dao.dato.Cliente;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -86,6 +87,11 @@ public class ClienteDAO implements IClienteDAO{
         else{
             return false;
         }
+    }
+
+    @Override
+    public ArrayList<Cliente> listarCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
