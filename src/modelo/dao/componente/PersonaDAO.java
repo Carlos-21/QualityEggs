@@ -5,8 +5,12 @@
  */
 package modelo.dao.componente;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import modelo.dao.dato.Persona;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -90,8 +94,30 @@ public class PersonaDAO implements IPersonaDAO {
     }
 
     @Override
-    public ArrayList<Persona> listarPersona() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Persona> listarPersona(String busqueda, int categoria) {
+        ArrayList<Persona> personas = new ArrayList<Persona>();
+        MongoDatabase base = DataBaseConexion.getBaseDatos();
+        MongoCollection coleccion = base.getCollection("Empleado");
+        
+        Bson filtro = new Document();
+        switch(categoria){
+            case 1 : filtro = new Document("DNI", "77331531");
+                     System.out.println("hola");   
+                     break;
+            case 2 : //filtro.put("Nombre", "/"+busqueda+"/");
+                     break;                  
+        }
+        
+        FindIterable<Document> documentos = coleccion.find(filtro);
+        for (Document doc : documentos) {
+            Persona persona = new Persona();
+            persona.setDNI(doc.getString("DNI"));
+            persona.setNombre(doc.getString("Nombre"));
+            persona.setApellido(doc.getString("Apellido"));
+            persona.setDireccion(doc.getString("Direccion"));
+            personas.add(persona);
+        }
+        return personas;      
     }
 
 }

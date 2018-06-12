@@ -16,5 +16,5 @@ public interface IPersonaDAO {
     public abstract boolean insertarPersona(Persona persona);
     public abstract boolean actualizarPersona(Persona persona);
     public abstract boolean eliminarPersona(String DNI);
-    public abstract ArrayList<Persona> listarPersona();
+    public abstract ArrayList<Persona> listarPersona(String busqueda, int categoria);
 }

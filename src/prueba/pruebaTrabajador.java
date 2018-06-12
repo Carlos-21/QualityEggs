@@ -6,6 +6,8 @@
 package prueba;
 
 import controlador.ControladorTalentoHumano;
+import modelo.dao.diseño.IPersonaDAO;
+import modelo.factoria.FabricaDAO;
 import modelo.vistas.ModeloTalentoHumano;
 import vista.TalentoHumano.VentanaPrincipal;
 
@@ -21,9 +23,11 @@ public class pruebaTrabajador {
     public static void main(String[] args) {
         VentanaPrincipal vista = new VentanaPrincipal();
         
-        ModeloTalentoHumano modelo = new ModeloTalentoHumano();
+        ModeloTalentoHumano modelo1 = new ModeloTalentoHumano();
         
-        ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista, modelo);
+        IPersonaDAO modelo2 = FabricaDAO.instanciar().getPersonaDAO();
+        
+        ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista, modelo1, modelo2);
         
         vista.setControlador(controlador);
         vista.setVisible(true);

@@ -5,10 +5,13 @@
  */
 package vista.TalentoHumano;
 
+import com.placeholder.PlaceHolder;
 import controlador.ControladorTalentoHumano;
 import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -68,11 +71,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return botonTrabajador;
     }
 
+    public JTextField getBusquedaCargo() {
+        return busquedaCargo;
+    }
+
+    public JTextField getBusquedaDNI() {
+        return busquedaDNI;
+    }
+
+    public JTextField getBusquedaNombre() {
+        return busquedaNombre;
+    }
+
+    public JTable getTablaTrabajadores() {
+        return tablaTrabajadores;
+    }
+
     public void setControlador(ControladorTalentoHumano c){
         botonTrabajador.addActionListener(c);
         botonAñadir.addActionListener(c);
         botonActualizar.addActionListener(c);
         botonEliminar.addActionListener(c);
+        busquedaDNI.addKeyListener(c);
+        busquedaCargo.addKeyListener(c);
+        busquedaNombre.addKeyListener(c);
     }
     
     /**
@@ -88,12 +110,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonActualizar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonGenerarReporte = new javax.swing.JButton();
-        escritorio = new javax.swing.JDesktopPane();
-        ListadoDeTrabajadores listado = new ListadoDeTrabajadores(); 
-        escritorio.add(listado);
-        listado.show();
         botonTrabajador = new javax.swing.JButton();
         botonReporte = new javax.swing.JButton();
+        panelListados = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaTrabajadores = new javax.swing.JTable();
+        busquedaDNI = new javax.swing.JTextField();
+        PlaceHolder texto = new PlaceHolder(busquedaDNI, "DNI");
+        busquedaNombre = new javax.swing.JTextField();
+        PlaceHolder texto2 = new PlaceHolder(busquedaNombre, "Nombre");
+        busquedaCargo = new javax.swing.JTextField();
+        PlaceHolder texto3 = new PlaceHolder(busquedaCargo, "Cargo");
 
         botonAñadir.setText("Añadir");
 
@@ -105,20 +132,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
-        escritorio.setLayout(escritorioLayout);
-        escritorioLayout.setHorizontalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        escritorioLayout.setVerticalGroup(
-            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
-        );
-
         botonTrabajador.setText("Trabajadores");
 
         botonReporte.setText("Reportes");
+
+        panelListados.setMinimumSize(new java.awt.Dimension(451, 361));
+        panelListados.setPreferredSize(new java.awt.Dimension(451, 361));
+        panelListados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaTrabajadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "DNI", "Nombre", "Cargo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaTrabajadores);
+
+        panelListados.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 388, 231));
+        panelListados.add(busquedaDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 110, -1));
+        panelListados.add(busquedaNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 110, -1));
+        panelListados.add(busquedaCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,8 +182,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(panelListados, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,8 +191,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(170, 170, 170)
                 .addComponent(botonTrabajador)
                 .addGap(35, 35, 35)
-                .addComponent(botonReporte))
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonReporte)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelListados, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
         );
 
         pack();
@@ -187,6 +241,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonGenerarReporte;
     private javax.swing.JButton botonReporte;
     private javax.swing.JButton botonTrabajador;
-    private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JTextField busquedaCargo;
+    private javax.swing.JTextField busquedaDNI;
+    private javax.swing.JTextField busquedaNombre;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panelListados;
+    private javax.swing.JTable tablaTrabajadores;
     // End of variables declaration//GEN-END:variables
 }
