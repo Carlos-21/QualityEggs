@@ -107,8 +107,8 @@ public class PersonaDAO implements IPersonaDAO {
             case 2 : //filtro.put("Nombre", "/"+busqueda+"/");
                      break;                  
         }
-        
-        FindIterable<Document> documentos = coleccion.find(filtro);
+        String a = String.format("{DNI: {0}}", busqueda);
+        FindIterable<Document> documentos = coleccion.find().comment(a);
         for (Document doc : documentos) {
             Persona persona = new Persona();
             persona.setDNI(doc.getString("DNI"));

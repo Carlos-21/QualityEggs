@@ -76,7 +76,6 @@ public class ControladorTalentoHumano implements ActionListener, KeyListener{
     private void mostrarDatos(String busqueda, int categoria) {
         ArrayList<Persona> personas = modelo2.listarPersona(busqueda, categoria);
 
-        System.out.println("Cantidad : "+personas.size());
         if (personas != null) {
             String[] columnas = {"DNI", "Nombre", "Comisión"};
 
@@ -93,6 +92,7 @@ public class ControladorTalentoHumano implements ActionListener, KeyListener{
             DefaultTableModel tabla = new DefaultTableModel(filas, columnas);
 
             vista.getTablaTrabajadores().setModel(tabla);
+            vista.repaint();
         }
     }
 }
