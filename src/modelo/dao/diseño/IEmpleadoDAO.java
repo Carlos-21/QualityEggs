@@ -16,5 +16,5 @@ public interface IEmpleadoDAO {
     public abstract boolean insertarEmpleado(Empleado empleado);
     public abstract boolean actualizarEmpleado(Empleado empleado);
     public abstract boolean eliminarEmpleado(String usuario);
-    public abstract ArrayList<Empleado> listarEmpleado();
+    public abstract ArrayList<Empleado> listarEmpleado(String busqueda, int categoria);
 }

@@ -95,6 +95,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         busquedaDNI.addKeyListener(c);
         busquedaCargo.addKeyListener(c);
         busquedaNombre.addKeyListener(c);
+        tablaTrabajadores.addMouseListener(c);
     }
     
     /**

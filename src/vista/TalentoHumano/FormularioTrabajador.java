@@ -10,6 +10,7 @@ import com.toedter.calendar.JDateChooser;
 import controlador.ControladorTrabajador;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import modelo.dao.dato.Empleado;
 import vista.propiedad.Directorio;
@@ -44,7 +45,7 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         return textoApellido;
     }
 
-    public JTextField getTextoContraseña() {
+    public JPasswordField getTextoContraseña() {
         return textoContraseña;
     }
 
@@ -63,6 +64,7 @@ public class FormularioTrabajador extends javax.swing.JFrame {
     public JTextField getTextoUsuario() {
         return textoUsuario;
     }
+    
     
     public void setControlador(ControladorTrabajador c){
         botonFormulario.addActionListener(c);
@@ -88,9 +90,9 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         listadoCargo = new javax.swing.JComboBox<>();
         fechaIngreso = new com.toedter.calendar.JDateChooser();
         textoUsuario = new javax.swing.JTextField();
-        textoContraseña = new javax.swing.JTextField();
         botonFormulario = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        textoContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 102));
@@ -145,7 +147,6 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         fechaIngreso.setOpaque(false);
         getContentPane().add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 194, 27));
         getContentPane().add(textoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 194, 27));
-        getContentPane().add(textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 194, 27));
 
         botonFormulario.setBackground(new java.awt.Color(255, 127, 0));
         botonFormulario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imagenes/iconos/guardar.png"))); // NOI18N
@@ -155,6 +156,8 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         botonSalir.setOpaque(false);
         botonSalir.setContentAreaFilled(false);
         botonSalir.setBorderPainted(false);
+
+        getContentPane().add(textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 194, 27));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,7 +230,7 @@ public class FormularioTrabajador extends javax.swing.JFrame {
     private javax.swing.JLabel label8;
     private javax.swing.JComboBox<String> listadoCargo;
     private javax.swing.JTextField textoApellido;
-    private javax.swing.JTextField textoContraseña;
+    private javax.swing.JPasswordField textoContraseña;
     private javax.swing.JTextField textoDNI;
     private javax.swing.JTextField textoDireccion;
     private javax.swing.JTextField textoNombre;

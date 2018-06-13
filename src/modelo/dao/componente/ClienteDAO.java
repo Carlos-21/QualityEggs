@@ -26,6 +26,7 @@ public class ClienteDAO implements IClienteDAO{
         long cantidadInicial = base.getCollection("Cliente").count();
         
         Document dato = new Document();
+        dato.append("DNI", cliente.getDNI());
         dato.append("RUC", cliente.getRUC());
         dato.append("RazonSocial", cliente.getRazonSocial());
         dato.append("Telefono", cliente.getTelefono());
@@ -52,6 +53,7 @@ public class ClienteDAO implements IClienteDAO{
         Bson filtro = new Document("RUC", cliente.getRUC()); 
         
         Document dato = new Document();
+        dato.append("DNI", cliente.getDNI());
         dato.append("RUC", cliente.getRUC());
         dato.append("RazonSocial", cliente.getRazonSocial());
         dato.append("Telefono", cliente.getTelefono());
@@ -90,7 +92,7 @@ public class ClienteDAO implements IClienteDAO{
     }
 
     @Override
-    public ArrayList<Cliente> listarCliente() {
+    public ArrayList<Cliente> listarCliente(String busqueda, int categoria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

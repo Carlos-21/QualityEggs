@@ -5,6 +5,7 @@
  */
 package modelo.dao.componente;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -13,6 +14,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import modelo.dao.DataBaseConexion;
 import modelo.dao.dato.Empleado;
+import modelo.dao.dato.Persona;
 import modelo.dao.diseño.IEmpleadoDAO;
 
 /**
@@ -28,9 +30,10 @@ public class EmpleadoDAO implements IEmpleadoDAO{
         long cantidadInicial = base.getCollection("Empleado").count();
         
         Document dato = new Document();
+        dato.append("DNI", empleado.getDNI());
         dato.append("Usuario", empleado.getUsuario());
         dato.append("Contraseña", empleado.getContraseña());
-        dato.append("Cargo", empleado.getContraseña());
+        dato.append("Cargo", empleado.getCargo());
         dato.append("FechaIngreso", empleado.getFechIngreso());
 
         base.getCollection("Empleado").insertOne(dato);
@@ -51,18 +54,19 @@ public class EmpleadoDAO implements IEmpleadoDAO{
         
         long cantidadInicial = base.getCollection("Empleado").count();
         
-        Bson filtro = new Document("Usuario", empleado.getUsuario()); 
-        
+        Bson filtro = new Document("DNI", empleado.getDNI()); 
+        System.out.println("asf"+filtro);
         Document dato = new Document();
+        dato.append("DNI", empleado.getDNI());
         dato.append("Usuario", empleado.getUsuario());
         dato.append("Contraseña", empleado.getContraseña());
-        dato.append("Cargo", empleado.getContraseña());
+        dato.append("Cargo", empleado.getCargo());
         dato.append("FechaIngreso", empleado.getFechIngreso());
 
         base.getCollection("Empleado").replaceOne(filtro, dato);
         
         long cantidadFinal = base.getCollection("Empleado").count();
-        
+        System.out.println("cat "+cantidadInicial+" "+cantidadFinal);
         if(cantidadInicial == cantidadFinal){
             return true;
         }
@@ -92,20 +96,45 @@ public class EmpleadoDAO implements IEmpleadoDAO{
     }
 
     @Override
-    public ArrayList<Empleado> listarEmpleado() {
+    public ArrayList<Empleado> listarEmpleado(String busqueda, int categoria) {
+        PersonaDAO per = new PersonaDAO();
+        ArrayList<Persona> personas =  per.listarPersona(busqueda, categoria);
+        int i = 0;
+        
         ArrayList<Empleado> empleados = new ArrayList<Empleado>();
         MongoDatabase base = DataBaseConexion.getBaseDatos();
         MongoCollection coleccion = base.getCollection("Empleado");
         
-        FindIterable<Document> documentos = coleccion.find(); 
+        BasicDBObject filtro = new BasicDBObject();
+        
+        switch(categoria){
+            case 1 : filtro = new BasicDBObject("DNI", new BasicDBObject("$regex", busqueda));   
+                     break;
+            case 2 : filtro = new BasicDBObject("Nombre", new BasicDBObject("$regex", busqueda));
+                     break;                  
+        }
+  
+        FindIterable<Document> documentos = coleccion.find(filtro); 
         for (Document doc : documentos) {
             Empleado empleado = new Empleado();
+            empleado.setDNI(doc.getString("DNI"));
             empleado.setUsuario(doc.getString("Usuario"));
             empleado.setContraseña(doc.getString("Contraseña"));
             empleado.setCargo(doc.getString("Cargo"));
             empleado.setFechIngreso(doc.getDate("FechaIngreso"));
+            
+            for (Persona persona : personas){
+                if(persona.getDNI().equals(empleado.getDNI())){
+                    empleado.setNombre(persona.getNombre());
+                    empleado.setApellido(persona.getApellido());
+                    empleado.setDireccion(persona.getDireccion());
+                }
+            }
+          
             empleados.add(empleado);
+            i++;
         }
+        
         return empleados;
     }
     

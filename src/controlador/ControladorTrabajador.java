@@ -50,6 +50,7 @@ public class ControladorTrabajador implements ActionListener{
                 String contraseña = vista.getTextoContraseña().getText();
                 Date fechIngreso = vista.getFechaIngreso().getDate();
                 String cargo = String.valueOf(vista.getListadoCargo().getSelectedItem()); 
+                empleado.setDNI(dni);
                 empleado.setUsuario(usuario);
                 empleado.setContraseña(contraseña);
                 empleado.setFechIngreso(fechIngreso);
@@ -61,7 +62,32 @@ public class ControladorTrabajador implements ActionListener{
                 }
             }
             if(vista.getBotonFormulario().getText() == "Actualizar"){
+                Persona persona = new Persona();
+                String dni = vista.getTextoDNI().getText();
+                String nombre = vista.getTextoNombre().getText();
+                String apellido = vista.getTextoApellido().getText(); 
+                String direccion = vista.getTextoDireccion().getText();
+                persona.setDNI(dni);
+                persona.setNombre(nombre);
+                persona.setApellido(apellido);
+                persona.setDireccion(direccion);
+                boolean resultado = modelo1.actualizarPersona(persona);
                 
+                Empleado empleado = new Empleado();
+                String usuario = vista.getTextoUsuario().getText();
+                String contraseña = vista.getTextoContraseña().getText();
+                Date fechIngreso = vista.getFechaIngreso().getDate();
+                String cargo = String.valueOf(vista.getListadoCargo().getSelectedItem()); 
+                empleado.setDNI(dni);
+                empleado.setUsuario(usuario);
+                empleado.setContraseña(contraseña);
+                empleado.setFechIngreso(fechIngreso);
+                empleado.setCargo(cargo);
+                boolean resultado2 = modelo2.actualizarEmpleado(empleado);
+                
+                if(resultado && resultado2){
+                    JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
+                }
             }
         }
     }

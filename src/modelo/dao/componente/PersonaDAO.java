@@ -10,7 +10,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 import modelo.dao.dato.Persona;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -97,27 +96,27 @@ public class PersonaDAO implements IPersonaDAO {
     public ArrayList<Persona> listarPersona(String busqueda, int categoria) {
         ArrayList<Persona> personas = new ArrayList<Persona>();
         MongoDatabase base = DataBaseConexion.getBaseDatos();
-        MongoCollection coleccion = base.getCollection("Empleado");
+        MongoCollection coleccion = base.getCollection("Persona");
         
-        Bson filtro = new Document();
+        BasicDBObject filtro = new BasicDBObject();
+        
         switch(categoria){
-            case 1 : filtro = new Document("DNI", "77331531");
-                     System.out.println("hola");   
+            case 1 : filtro = new BasicDBObject("DNI", new BasicDBObject("$regex", busqueda));   
                      break;
-            case 2 : //filtro.put("Nombre", "/"+busqueda+"/");
+            case 2 : filtro = new BasicDBObject("Nombre", new BasicDBObject("$regex", busqueda));
                      break;                  
         }
-        String a = String.format("{DNI: {0}}", busqueda);
-        FindIterable<Document> documentos = coleccion.find().comment(a);
+
+        FindIterable<Document> documentos = coleccion.find(filtro);
         for (Document doc : documentos) {
-            Persona persona = new Persona();
+            Persona persona = new Persona();   
             persona.setDNI(doc.getString("DNI"));
             persona.setNombre(doc.getString("Nombre"));
             persona.setApellido(doc.getString("Apellido"));
             persona.setDireccion(doc.getString("Direccion"));
             personas.add(persona);
         }
-        return personas;      
+        return personas;
     }
 
 }

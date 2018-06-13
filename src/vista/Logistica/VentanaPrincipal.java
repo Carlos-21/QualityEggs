@@ -153,7 +153,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         contenedorBotonesLayout.setVerticalGroup(
             contenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addComponent(botonEntrega)
                 .addGap(26, 26, 26)
                 .addComponent(botonProduccion)
@@ -166,7 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonSalir.setContentAreaFilled(false);
         botonSalir.setBorderPainted(false);
 
-        getContentPane().add(contenedorBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 285, -1));
+        getContentPane().add(contenedorBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 285, 470));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
