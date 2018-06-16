@@ -5,11 +5,10 @@
  */
 package qualityeggs;
 
-
-import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
-import com.mongodb.client.MongoDatabase;
-
+import controlador.Seguridad.ControladorSeguridad;
+import modelo.dao.diseño.IEmpleadoDAO;
+import modelo.factoria.FabricaDAO;
+import vista.Seguridad.VentanaLogin;
 
 /**
  *
@@ -21,9 +20,25 @@ public class QualityEggs {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        MongoClient mongoClient =  new MongoClient(new ServerAddress("localhost", 27017));
-        MongoDatabase db = mongoClient.getDatabase("test");
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+        } 
+        
+        VentanaLogin vista = new VentanaLogin();
+        
+        IEmpleadoDAO modelo = FabricaDAO.instanciar().getEmpleadoDAO();
+        
+        ControladorSeguridad controlador = new ControladorSeguridad(vista, modelo);
+        
+        vista.setControlador(controlador);
+        vista.setVisible(true);
+        vista.setLocationRelativeTo(null);
     }
     
 }

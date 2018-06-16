@@ -7,6 +7,7 @@ package vista.Logistica;
 
 
 import modelo.dao.dato.Empleado;
+import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
 
@@ -19,7 +20,7 @@ public class FormularioProduccion extends javax.swing.JFrame {
     
     public FormularioProduccion() {
         initComponents();
-        this.getContentPane().setBackground(Propiedad.fondoFormulario);
+        this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
     }
         
@@ -97,8 +98,8 @@ public class FormularioProduccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ponerImagenes(){
-        Directorio.ponerImagenBoton(botonAtras, Directorio.botonAtras);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
     public void llenarFormulario(Empleado trabajador){

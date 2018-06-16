@@ -7,6 +7,7 @@ package vista.SistemaVentas;
 
 
 import modelo.dao.dato.Cliente;
+import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
 
@@ -19,7 +20,7 @@ public class FormularioPedido extends javax.swing.JFrame {
 
     public FormularioPedido() {
         initComponents();
-        this.getContentPane().setBackground(Propiedad.fondoFormulario);
+        this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
     }
     
@@ -96,8 +97,8 @@ public class FormularioPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ponerImagenes(){
-        Directorio.ponerImagenBoton(botonAtras, Directorio.botonAtras);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
     public void llenarFormulario(Cliente cliente){
@@ -111,7 +112,7 @@ public class FormularioPedido extends javax.swing.JFrame {
 //        textoRUC.setText(cliente.getRUC());
 //        textoRazonSocial.setText(cliente.getRazonSocial());
         
-        Directorio.ponerImagenBoton(botonFormulario, Directorio.botonActualizar, "Actualizar", Propiedad.botonActualizar);
+        Propiedad.ponerImagenBoton(botonFormulario, Directorio.botonActualizar, "Actualizar", Colores.botonActualizar);
     }
     
     /**

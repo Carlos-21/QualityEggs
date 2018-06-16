@@ -5,7 +5,9 @@
  */
 package modelo.factoria;
 
+import modelo.dao.componente.EmpleadoDAO;
 import modelo.dao.componente.PersonaDAO;
+import modelo.dao.diseño.IEmpleadoDAO;
 import modelo.dao.diseño.IPersonaDAO;
 
 /**
@@ -25,5 +27,9 @@ public class FabricaDAO {
     
     public IPersonaDAO getPersonaDAO(){
         return new PersonaDAO();
+    }
+    
+    public IEmpleadoDAO getEmpleadoDAO(){
+        return new EmpleadoDAO();
     }
 }

@@ -6,6 +6,7 @@
 package vista.SistemaVentas;
 
 
+import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
 
@@ -17,7 +18,7 @@ public class FormularioTarifa extends javax.swing.JFrame {
 
     public FormularioTarifa() {
         initComponents();
-        this.getContentPane().setBackground(Propiedad.fondoFormulario);
+        this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
     }
     
@@ -83,8 +84,8 @@ public class FormularioTarifa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ponerImagenes(){
-        Directorio.ponerImagenBoton(botonAtras, Directorio.botonAtras);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     /**
      * @param args the command line arguments

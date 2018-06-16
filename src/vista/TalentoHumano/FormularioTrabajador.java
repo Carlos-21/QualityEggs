@@ -7,12 +7,13 @@ package vista.TalentoHumano;
 
 
 import com.toedter.calendar.JDateChooser;
-import controlador.ControladorTrabajador;
+import controlador.TalentoHumano.ControladorTrabajador;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import modelo.dao.dato.Empleado;
+import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
 
@@ -22,10 +23,11 @@ import vista.propiedad.Propiedad;
  * @author CARLOS
  */
 public class FormularioTrabajador extends javax.swing.JFrame {
+    private VentanaPrincipal ventana;
     
     public FormularioTrabajador() {
         initComponents();
-        this.getContentPane().setBackground(Propiedad.fondoFormulario);
+        this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
     }
 
@@ -64,10 +66,27 @@ public class FormularioTrabajador extends javax.swing.JFrame {
     public JTextField getTextoUsuario() {
         return textoUsuario;
     }
-    
+
+    public VentanaPrincipal getVentana() {
+        return ventana;
+    }
+
+    public JButton getBotonAtras() {
+        return botonAtras;
+    }
+
+    public JButton getBotonSalir() {
+        return botonSalir;
+    }
+
+    public void setVentana(VentanaPrincipal ventana) {
+        this.ventana = ventana;
+    }
     
     public void setControlador(ControladorTrabajador c){
         botonFormulario.addActionListener(c);
+        botonAtras.addActionListener(c);
+        botonSalir.addActionListener(c);
     }
     
     @SuppressWarnings("unchecked")
@@ -149,7 +168,6 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         getContentPane().add(textoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 430, 194, 27));
 
         botonFormulario.setBackground(new java.awt.Color(255, 127, 0));
-        botonFormulario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/imagenes/iconos/guardar.png"))); // NOI18N
         botonFormulario.setText("Registrar");
         getContentPane().add(botonFormulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 520, -1, -1));
         getContentPane().add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 63, 60));
@@ -163,8 +181,8 @@ public class FormularioTrabajador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ponerImagenes(){
-        Directorio.ponerImagenBoton(botonAtras, Directorio.botonAtras);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
     public void llenarFormulario(Empleado trabajador){

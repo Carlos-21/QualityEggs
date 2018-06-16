@@ -6,12 +6,17 @@
 package vista.TalentoHumano;
 
 import com.placeholder.PlaceHolder;
-import controlador.ControladorTalentoHumano;
+import controlador.TalentoHumano.ControladorTalentoHumano;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import modelo.dao.dato.Empleado;
+import vista.Seguridad.VentanaLogin;
+import vista.propiedad.Directorio;
+import vista.propiedad.Propiedad;
 
 /**
  *
@@ -22,6 +27,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private final Point posicion2;
     private final Dimension tamaño;
     private boolean bandera;
+    private int fila;
+    private ArrayList<Empleado> empleados;
+    private VentanaLogin login;
     
     public VentanaPrincipal() {
         initComponents();
@@ -29,6 +37,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         posicion2 = botonReporte.getLocation();
         tamaño = botonTrabajador.getSize();
         bandera = true;
+        ponerImagenes();
     }
 
     public Point getPosicion1() {
@@ -67,10 +76,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return botonReporte;
     }
 
-    public JButton getBotonTrabajador() {
-        return botonTrabajador;
-    }
-
     public JTextField getBusquedaCargo() {
         return busquedaCargo;
     }
@@ -87,8 +92,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return tablaTrabajadores;
     }
 
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(ArrayList<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public JButton getBotonSalir() {
+        return botonSalir;
+    }
+
+    public VentanaLogin getLogin() {
+        return login;
+    }
+
+    public void setLogin(VentanaLogin login) {
+        this.login = login;
+    }
+    
     public void setControlador(ControladorTalentoHumano c){
-        botonTrabajador.addActionListener(c);
+        botonSalir.addActionListener(c);
         botonAñadir.addActionListener(c);
         botonActualizar.addActionListener(c);
         botonEliminar.addActionListener(c);
@@ -96,6 +129,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         busquedaCargo.addKeyListener(c);
         busquedaNombre.addKeyListener(c);
         tablaTrabajadores.addMouseListener(c);
+    }
+    
+    private void ponerImagenes(){
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
     /**
@@ -122,6 +159,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PlaceHolder texto2 = new PlaceHolder(busquedaNombre, "Nombre");
         busquedaCargo = new javax.swing.JTextField();
         PlaceHolder texto3 = new PlaceHolder(busquedaCargo, "Cargo");
+        botonSalir = new javax.swing.JButton();
 
         botonAñadir.setText("Añadir");
 
@@ -134,6 +172,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         botonTrabajador.setText("Trabajadores");
+        botonTrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonTrabajadorActionPerformed(evt);
+            }
+        });
 
         botonReporte.setText("Reportes");
 
@@ -179,26 +222,69 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(72, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)))
                 .addComponent(panelListados, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelListados, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
+                .addGap(24, 24, 24)
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addComponent(botonTrabajador)
                 .addGap(35, 35, 35)
                 .addComponent(botonReporte)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(panelListados, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
         );
+
+        botonSalir.setOpaque(false);
+        botonSalir.setContentAreaFilled(false);
+        botonSalir.setBorderPainted(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTrabajadorActionPerformed
+        int posicionX = posicion1.x;
+        int posicionY = posicion1.y;
+        
+        if(bandera){
+            getBotonAñadir().setBounds(posicionX + 10, posicionY + 30, tamaño.width - 20, tamaño.height);
+            add(this.getBotonAñadir());
+
+            getBotonActualizar().setBounds(posicionX + 10, posicionY + 60, tamaño.width - 20, tamaño.height);
+            add(this.getBotonActualizar());
+
+            getBotonEliminar().setBounds(posicionX + 10, posicionY + 90, tamaño.width - 20, tamaño.height);
+            add(this.getBotonEliminar());
+
+            getBotonReporte().setBounds(posicionX, posicionY + 140, tamaño.width, tamaño.height);
+            add(this.getBotonReporte());
+            
+            bandera = false;
+        } 
+        else{
+            remove(this.getBotonAñadir());
+            remove(this.getBotonActualizar());
+            remove(this.getBotonEliminar());
+
+            getBotonReporte().setBounds(posicionX, posicion2.y, tamaño.width, tamaño.height);
+            add(this.getBotonReporte());
+            
+            bandera = true;
+        }
+    }//GEN-LAST:event_botonTrabajadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,6 +327,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonGenerarReporte;
     private javax.swing.JButton botonReporte;
+    private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonTrabajador;
     private javax.swing.JTextField busquedaCargo;
     private javax.swing.JTextField busquedaDNI;

@@ -8,6 +8,7 @@ package vista.SistemaVentas;
 import vista.propiedad.Directorio;
 import java.awt.Dimension;
 import java.awt.Point;
+import vista.propiedad.Propiedad;
 
 /**
  *
@@ -347,7 +348,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void ponerImagenes(){
         //Directorio.ponerImagenBoton(botonAtras, Directorio.botonAtras);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
     /**

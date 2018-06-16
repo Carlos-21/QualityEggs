@@ -5,10 +5,13 @@
  */
 package vista.Seguridad;
 
+import controlador.Seguridad.ControladorSeguridad;
 import vista.propiedad.Directorio;
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import vista.propiedad.Propiedad;
 
 
 /**
@@ -25,6 +28,39 @@ public class VentanaLogin extends javax.swing.JFrame {
         ponerImagenes();
     }
 
+    public JButton getBotonSalir() {
+        return botonSalir;
+    }
+
+    public JButton getBotonLogin() {
+        return botonLogin;
+    }
+
+    public JPasswordField getTextoContraseña() {
+        return textoContraseña;
+    }
+
+    public JTextField getTextoUsuario() {
+        return textoUsuario;
+    }
+
+    public JCheckBox getCheckMostrarContraseña() {
+        return checkMostrarContraseña;
+    }
+
+    public void setControlador(ControladorSeguridad c){
+        botonSalir.addActionListener(c);
+        botonLogin.addActionListener(c);
+        textoContraseña.addActionListener(c);
+        checkMostrarContraseña.addActionListener(c);
+    }
+    
+    private void ponerImagenes(){
+        Propiedad.ponerImagenLabel(labelLogin, Directorio.login);
+        Propiedad.ponerImagenLabel(fondo, Directorio.fondoLogin);
+        Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,23 +71,21 @@ public class VentanaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         labelLogin = new javax.swing.JLabel();
-        textUsuario = new javax.swing.JTextField();
-        textContraseña = new javax.swing.JPasswordField();
+        textoUsuario = new javax.swing.JTextField();
+        textoContraseña = new javax.swing.JPasswordField();
         botonSalir = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
+        botonLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        checkMostrarContraseña = new javax.swing.JCheckBox();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(595, 482));
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(595, 482));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(labelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 135, 135));
-        getContentPane().add(textUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 210, 29));
-        getContentPane().add(textContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 210, 29));
+        getContentPane().add(textoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 210, 29));
+        getContentPane().add(textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 210, 29));
 
         botonSalir.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -60,11 +94,11 @@ public class VentanaLogin extends javax.swing.JFrame {
         botonSalir.setContentAreaFilled(false);
         botonSalir.setBorderPainted(false);
 
-        btnLogin.setBackground(new java.awt.Color(37, 40, 80));
-        btnLogin.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("Ingresar");
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
+        botonLogin.setBackground(new java.awt.Color(37, 40, 80));
+        botonLogin.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        botonLogin.setForeground(new java.awt.Color(255, 255, 255));
+        botonLogin.setText("Ingresar");
+        getContentPane().add(botonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,20 +110,14 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLabel2.setText("Contraseña : ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
 
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Mostrar contreseña");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
+        checkMostrarContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        checkMostrarContraseña.setText("Mostrar contreseña");
+        getContentPane().add(checkMostrarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, -1, -1));
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 595, 482));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ponerImagenes(){
-        Directorio.ponerImagenLabel(labelLogin, Directorio.login);
-        Directorio.ponerImagenLabel(fondo, Directorio.fondoLogin);
-        Directorio.ponerImagenBoton(botonSalir, Directorio.botonSalir);
-    }
-    
+ 
     /**
      * @param args the command line arguments
      */
@@ -127,14 +155,14 @@ public class VentanaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton botonLogin;
     public javax.swing.JButton botonSalir;
-    public javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox checkMostrarContraseña;
     private javax.swing.JLabel fondo;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelLogin;
-    public javax.swing.JPasswordField textContraseña;
-    public javax.swing.JTextField textUsuario;
+    public javax.swing.JPasswordField textoContraseña;
+    public javax.swing.JTextField textoUsuario;
     // End of variables declaration//GEN-END:variables
 }
