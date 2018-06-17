@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/CARLOS/Documents/UNMSM/Ciclo%207/Diseño%20de%20sistemas%20de%20información/Proyecto/Aplicación/QualityEggs/src/qualityeggs/QualityEggs.java</file>
             <file>file:/C:/Users/CARLOS/Documents/UNMSM/Ciclo%207/Diseño%20de%20sistemas%20de%20información/Proyecto/Aplicación/QualityEggs/src/controlador/Seguridad/ControladorSeguridad.java</file>
+            <file>file:/C:/Users/CARLOS/Documents/UNMSM/Ciclo%207/Diseño%20de%20sistemas%20de%20información/Proyecto/Aplicación/QualityEggs/src/controlador/Ventas/ControladorVentas.java</file>
+            <file>file:/C:/Users/CARLOS/Documents/UNMSM/Ciclo%207/Diseño%20de%20sistemas%20de%20información/Proyecto/Aplicación/QualityEggs/src/modelo/factoria/FabricaDAO.java</file>
         </group>
     </open-files>
 </project-private>

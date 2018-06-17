@@ -5,16 +5,25 @@
  */
 package controlador.Seguridad;
 
+import controlador.Logistica.ControladorLogistica;
 import controlador.TalentoHumano.ControladorTalentoHumano;
+import controlador.Ventas.ControladorVentas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import modelo.dao.dato.Empleado;
-import modelo.dao.diseño.IEmpleadoDAO;
+import modelo.dao.dato.TalentoHumano.Empleado;
+import modelo.dao.diseño.Logistica.IProduccionDAO;
+import modelo.dao.diseño.Ventas.IClienteDAO;
+import modelo.dao.diseño.TalentoHumano.IEmpleadoDAO;
+import modelo.dao.diseño.Ventas.IPagoDAO;
+import modelo.dao.diseño.Ventas.IPedidoDAO;
+import modelo.dao.diseño.Ventas.ITarifaDAO;
 import modelo.factoria.FabricaDAO;
 import vista.Seguridad.VentanaLogin;
 import vista.TalentoHumano.VentanaPrincipal;
+import vista.Logistica.VentanaPrincipalProduccion;
+import vista.SistemaVentas.VentanaPrincipalVentas;
 
 /**
  *
@@ -41,21 +50,51 @@ public class ControladorSeguridad implements ActionListener{
                 case 1 :    JOptionPane.showMessageDialog(null, "Acceso concedido.");   
                             this.vista.dispose();
                             
-                            VentanaPrincipal vista = new VentanaPrincipal();
-                            IEmpleadoDAO modelo1 = FabricaDAO.instanciar().getEmpleadoDAO();
-                            ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista, modelo1);
+                            VentanaPrincipal vista1 = new VentanaPrincipal();
                             
-                            vista.setLogin(this.vista);
-                            vista.setControlador(controlador);
-                            vista.setVisible(true);
-                            vista.setLocationRelativeTo(null);
+                            IEmpleadoDAO modelo1 = FabricaDAO.instanciar().getEmpleadoDAO();
+                            
+                            ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista1, modelo1);
+                            
+                            vista1.setLogin(this.vista);
+                            vista1.setControlador(controlador);
+                            vista1.setVisible(true);
+                            vista1.setLocationRelativeTo(null);
                             break;
                             
-                case 2 : JOptionPane.showMessageDialog(null, "Usuario no registrado.");
-                         break;
+                case 2 :    JOptionPane.showMessageDialog(null, "Acceso concedido.");   
+                            this.vista.dispose();
+                            
+                            VentanaPrincipalVentas vista2 = new VentanaPrincipalVentas();
+                            
+                            IClienteDAO modelo2 = FabricaDAO.instanciar().getClienteDAO();
+                            ITarifaDAO modelo3 = FabricaDAO.instanciar().getTarifaDAO();
+                            IPedidoDAO modelo4 = FabricaDAO.instanciar().getPedidoDAO();
+                            IPagoDAO modelo5 = FabricaDAO.instanciar().getPagoDAO();
+                            
+                            ControladorVentas controlador2 = new ControladorVentas(vista2, modelo2, modelo3, modelo4, modelo5);
+                            
+                            vista2.setLogin(this.vista);
+                            vista2.setControlador(controlador2);
+                            vista2.setVisible(true);
+                            vista2.setLocationRelativeTo(null);
+                            break;
                          
-                case 3 : JOptionPane.showMessageDialog(null, "Usuario no registrado.");
-                         break;
+                case 3 :    JOptionPane.showMessageDialog(null, "Acceso concedido.");   
+                            this.vista.dispose();
+                            
+                            VentanaPrincipalProduccion vista3 = new VentanaPrincipalProduccion();
+                            
+                            IProduccionDAO modelo6 = FabricaDAO.instanciar().getProduccionDAO();
+                            IPedidoDAO modelo7 = FabricaDAO.instanciar().getPedidoDAO();
+                            
+                            ControladorLogistica controlador3 = new ControladorLogistica(vista3, modelo6, modelo7);
+                            
+                            vista3.setLogin(this.vista);
+                            vista3.setControlador(controlador3);
+                            vista3.setVisible(true);
+                            vista3.setLocationRelativeTo(null);
+                            break;
                          
             }
         }
@@ -67,6 +106,10 @@ public class ControladorSeguridad implements ActionListener{
             else{
                 vista.getTextoContraseña().setEchoChar('*');
             }
+        }
+        
+        if(evento.getSource().equals(vista.getBotonSalir())){
+            System.exit(0);
         }
     }
     
@@ -83,7 +126,7 @@ public class ControladorSeguridad implements ActionListener{
                     return 2;
                 }
                 
-                if(empleado.getCargo().equals("Encargado de almacen")){
+                if(empleado.getCargo().equals("Encargado de almacén")){
                     return 3;
                 }
             }

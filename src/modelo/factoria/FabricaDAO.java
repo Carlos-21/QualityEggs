@@ -5,10 +5,20 @@
  */
 package modelo.factoria;
 
-import modelo.dao.componente.EmpleadoDAO;
-import modelo.dao.componente.PersonaDAO;
-import modelo.dao.diseño.IEmpleadoDAO;
-import modelo.dao.diseño.IPersonaDAO;
+import modelo.dao.componente.Logistica.ProduccionDAO;
+import modelo.dao.componente.Ventas.ClienteDAO;
+import modelo.dao.componente.TalentoHumano.EmpleadoDAO;
+import modelo.dao.componente.TalentoHumano.PersonaDAO;
+import modelo.dao.componente.Ventas.PagoDAO;
+import modelo.dao.componente.Ventas.PedidoDAO;
+import modelo.dao.componente.Ventas.TarifaDAO;
+import modelo.dao.diseño.Logistica.IProduccionDAO;
+import modelo.dao.diseño.Ventas.IClienteDAO;
+import modelo.dao.diseño.TalentoHumano.IEmpleadoDAO;
+import modelo.dao.diseño.TalentoHumano.IPersonaDAO;
+import modelo.dao.diseño.Ventas.IPagoDAO;
+import modelo.dao.diseño.Ventas.IPedidoDAO;
+import modelo.dao.diseño.Ventas.ITarifaDAO;
 
 /**
  *
@@ -31,5 +41,25 @@ public class FabricaDAO {
     
     public IEmpleadoDAO getEmpleadoDAO(){
         return new EmpleadoDAO();
+    }
+    
+    public IClienteDAO getClienteDAO(){
+        return new ClienteDAO();
+    }
+    
+    public IProduccionDAO getProduccionDAO(){
+        return new ProduccionDAO();
+    }
+    
+    public ITarifaDAO getTarifaDAO(){
+        return new TarifaDAO();
+    }
+    
+    public IPedidoDAO getPedidoDAO(){
+        return new PedidoDAO();
+    }
+    
+    public IPagoDAO getPagoDAO(){
+        return new PagoDAO();
     }
 }

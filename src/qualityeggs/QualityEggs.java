@@ -6,7 +6,7 @@
 package qualityeggs;
 
 import controlador.Seguridad.ControladorSeguridad;
-import modelo.dao.diseño.IEmpleadoDAO;
+import modelo.dao.diseño.TalentoHumano.IEmpleadoDAO;
 import modelo.factoria.FabricaDAO;
 import vista.Seguridad.VentanaLogin;
 

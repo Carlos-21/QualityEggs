@@ -13,10 +13,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.dao.componente.EmpleadoDAO;
-import modelo.dao.componente.PersonaDAO;
-import modelo.dao.dato.Empleado;
-import modelo.dao.diseño.IEmpleadoDAO;
+import modelo.dao.dato.TalentoHumano.Empleado;
+import modelo.dao.diseño.TalentoHumano.IEmpleadoDAO;
 import vista.TalentoHumano.FormularioTrabajador;
 import vista.TalentoHumano.VentanaPrincipal;
 import vista.propiedad.Colores;
@@ -40,7 +38,7 @@ public class ControladorTalentoHumano implements ActionListener, KeyListener, Mo
     @Override
     public void actionPerformed(ActionEvent evento) {
         if(evento.getSource().equals(vista.getBotonAñadir())){
-            vista.dispose();
+            this.vista.dispose();
             
             FormularioTrabajador vista = new FormularioTrabajador();
             vista.setVentana(this.vista);
@@ -70,12 +68,11 @@ public class ControladorTalentoHumano implements ActionListener, KeyListener, Mo
         }
         
         if(evento.getSource().equals(vista.getBotonEliminar())){
-            //Verificar
-            PersonaDAO modelo1 = new PersonaDAO();
-            //modelo1.eliminarPersona(a.get(fila).getDNI());
-            EmpleadoDAO modelo2 = new EmpleadoDAO(); 
-            //modelo2.eliminarEmpleado(a.get(fila).getUsuario());
-            JOptionPane.showMessageDialog(null, "Empleado eliminado");
+            boolean resultado = modelo.eliminarEmpleado(vista.getEmpleados().get(vista.getFila()).getDNI());
+            
+            if(resultado){
+                JOptionPane.showMessageDialog(null, "Empleado eliminado");
+            }
         }
         
         if(evento.getSource().equals(vista.getBotonSalir())){
@@ -84,6 +81,8 @@ public class ControladorTalentoHumano implements ActionListener, KeyListener, Mo
             
             vista.dispose();
         }
+        
+        mostrarDatos("", 0);
     }
 
     @Override

@@ -6,7 +6,12 @@
 package vista.Logistica;
 
 
-import modelo.dao.dato.Empleado;
+import com.toedter.calendar.JDateChooser;
+import controlador.Logistica.ControladorProduccion;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import modelo.dao.dato.Logistica.Produccion;
+import modelo.dao.dato.TalentoHumano.Empleado;
 import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
@@ -17,13 +22,60 @@ import vista.propiedad.Propiedad;
  * @author CARLOS
  */
 public class FormularioProduccion extends javax.swing.JFrame {
+    private VentanaPrincipalProduccion ventana;
     
     public FormularioProduccion() {
         initComponents();
         this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
     }
-        
+
+    public JButton getBotonAtras() {
+        return botonAtras;
+    }
+
+    public JButton getBotonFormulario() {
+        return botonFormulario;
+    }
+
+    public JButton getBotonSalir() {
+        return botonSalir;
+    }
+
+    public JDateChooser getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public JTextField getTextoAlmacen() {
+        return textoAlmacen;
+    }
+
+    public JTextField getTextoCodigo() {
+        return textoCodigo;
+    }
+
+    public JTextField getTextoPeso() {
+        return textoPeso;
+    }
+
+    public JTextField getTextoStock() {
+        return textoStock;
+    }
+
+    public VentanaPrincipalProduccion getVentana() {
+        return ventana;
+    }
+
+    public void setVentana(VentanaPrincipalProduccion ventana) {
+        this.ventana = ventana;
+    }
+     
+    public void setControlador(ControladorProduccion c){
+        botonSalir.addActionListener(c);
+        botonAtras.addActionListener(c);
+        botonFormulario.addActionListener(c);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +138,6 @@ public class FormularioProduccion extends javax.swing.JFrame {
         getContentPane().add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 194, 27));
 
         botonFormulario.setBackground(new java.awt.Color(255, 127, 0));
-        botonFormulario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/frame/imagenes/iconos/guardar.png"))); // NOI18N
         botonFormulario.setText("Registrar");
         getContentPane().add(botonFormulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, -1, -1));
         getContentPane().add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 63, 60));
@@ -102,14 +153,14 @@ public class FormularioProduccion extends javax.swing.JFrame {
         Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
     }
     
-    public void llenarFormulario(Empleado trabajador){
-        textoCodigo.setText(trabajador.getDNI());
+    public void llenarFormulario(Produccion produccion){
+        textoCodigo.setText(produccion.getCodigo());
         
-        textoAlmacen.setText(trabajador.getNombre());
-        fechaIngreso.setDate(trabajador.getFechIngreso());
+        textoAlmacen.setText(produccion.getNombreAlmacen());
+        fechaIngreso.setDate(produccion.getFechaIngreso());
         
-        textoPeso.setText(trabajador.getApellido());
-        textoStock.setText(trabajador.getDireccion());      
+        textoPeso.setText(String.valueOf(produccion.getPeso()));
+        textoStock.setText(String.valueOf(produccion.getStock()));      
     }
     /**
      * @param args the command line arguments

@@ -40,4 +40,11 @@ public class Propiedad {
         boton.setText(texto);
         boton.setBackground(color);
     }
+    
+    public static void ponerImagenBotonOpciones(JButton boton, String ruta){
+        ImageIcon icon = new ImageIcon(ruta);
+        Icon icono = new ImageIcon(icon.getImage());
+        boton.setIcon(icono); 
+    }
+    
 }

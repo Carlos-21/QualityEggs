@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import modelo.dao.dato.Empleado;
+import modelo.dao.dato.TalentoHumano.Empleado;
 import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
 import vista.propiedad.Propiedad;
