@@ -10,6 +10,8 @@ package vista.propiedad;
  * @author CARLOS
  */
 public class Directorio {
+    public static String logo = "vista/imagenes/iconos/logo.jpg";
+    
     public static String login = "src/vista/imagenes/seguridad/login.png";
     public static String fondoLogin = "src/vista/imagenes/seguridad/fondoLogin.jpg";
     public static String botonAtras = "src/vista/imagenes/iconos/retroceso.png";
@@ -32,5 +34,11 @@ public class Directorio {
     public static String botonReporte = "src/vista/imagenes/iconos/reporte.png";
     
     public static String botonConsultar = "src/vista/imagenes/iconos/consultar.png";
+    
+    public static String botonFactura = "src/vista/imagenes/iconos/factura.png";
+    public static String botonGuia = "src/vista/imagenes/iconos/guia.png";
+    public static String botonTransporte = "src/vista/imagenes/iconos/transporte.png";
+    
+    public static String botonEnviar = "src/vista/imagenes/iconos/enviar.png";
     
 }

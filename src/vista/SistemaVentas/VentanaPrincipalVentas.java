@@ -11,7 +11,9 @@ import vista.propiedad.Directorio;
 import modelo.dao.dato.Ventas.Cliente;
 import modelo.dao.dato.Ventas.Tarifa;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -638,6 +640,8 @@ public class VentanaPrincipalVentas extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         contenedorBotones.setBackground(new java.awt.Color(0, 204, 204));
@@ -911,6 +915,13 @@ public class VentanaPrincipalVentas extends javax.swing.JFrame {
         Propiedad.ponerImagenBotonOpciones(botonEliminarTarifa, Directorio.opcionEliminar);
         
         Propiedad.ponerImagenBotonOpciones(botonAñadirPago, Directorio.opcionAñadir);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
     }
     
     /**

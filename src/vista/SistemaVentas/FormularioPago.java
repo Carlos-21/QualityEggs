@@ -7,7 +7,8 @@ package vista.SistemaVentas;
 
 
 import controlador.Ventas.ControladorPago;
-import controlador.Ventas.ControladorTarifa;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import modelo.dao.dato.Ventas.Pedido;
@@ -88,8 +89,10 @@ public class FormularioPago extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de nuevo Tarifa");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(500, 456));
         setPreferredSize(new java.awt.Dimension(434, 456));
+        setResizable(false);
         setSize(new java.awt.Dimension(434, 456));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -142,6 +145,13 @@ public class FormularioPago extends javax.swing.JFrame {
         textoImporteTotal.setText(String.valueOf(pedido.getImporteTotal()));
     }
 
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
+    }
+    
     /**
      * @param args the command line arguments
      */

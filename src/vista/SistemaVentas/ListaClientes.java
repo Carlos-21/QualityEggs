@@ -7,6 +7,8 @@ package vista.SistemaVentas;
 
 import com.placeholder.PlaceHolder;
 import controlador.Ventas.ControladorListadoCliente;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -110,6 +112,8 @@ public class ListaClientes extends javax.swing.JFrame {
         botonContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
+        setResizable(false);
 
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,6 +194,13 @@ public class ListaClientes extends javax.swing.JFrame {
     private void ponerImagenes(){
         Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
         Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
     }
     
     public static void main(String args[]) {

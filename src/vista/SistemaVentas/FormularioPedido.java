@@ -8,6 +8,8 @@ package vista.SistemaVentas;
 
 import com.toedter.calendar.JDateChooser;
 import controlador.Ventas.ControladorPedido;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
@@ -109,8 +111,10 @@ public class FormularioPedido extends javax.swing.JFrame {
         fechaPedido.setCalendar(calendario);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(500, 480));
         setPreferredSize(new java.awt.Dimension(500, 480));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -166,17 +170,14 @@ public class FormularioPedido extends javax.swing.JFrame {
     }
     
     public void llenarFormulario(Cliente cliente){
-//        textoCliente.setText(cliente.getDNI());
-//        textoNombre.setText(cliente.getNombres());
-//        textoCantidad.setText(cliente.getApellidos());
-//        textoImporteTotal.setText(cliente.getDireccion());
-//        listadoDistrito.setSelectedItem(cliente.getDistrito());
-//        textoTelefono.setText(cliente.getTelefono());
-//        
-//        textoRUC.setText(cliente.getRUC());
-//        textoRazonSocial.setText(cliente.getRazonSocial());
-        
         Propiedad.ponerImagenBoton(botonFormulario, Directorio.botonActualizar, "Actualizar", Colores.botonActualizar);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
     }
     
     /**

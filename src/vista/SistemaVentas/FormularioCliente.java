@@ -7,6 +7,8 @@ package vista.SistemaVentas;
 
 
 import controlador.Ventas.ControladorCliente;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -112,7 +114,9 @@ public class FormularioCliente extends javax.swing.JFrame {
         textoTelefono = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(500, 610));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -189,6 +193,13 @@ public class FormularioCliente extends javax.swing.JFrame {
         
         textoRUC.setText(cliente.getRUC());
         textoRazonSocial.setText(cliente.getRazonSocial());        
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
     }
     
     /**

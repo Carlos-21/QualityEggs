@@ -8,6 +8,8 @@ package vista.TalentoHumano;
 
 import com.toedter.calendar.JDateChooser;
 import controlador.TalentoHumano.ControladorTrabajador;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
@@ -117,6 +119,7 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 204, 102));
         setMinimumSize(new java.awt.Dimension(500, 630));
         setPreferredSize(new java.awt.Dimension(500, 630));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -197,6 +200,14 @@ public class FormularioTrabajador extends javax.swing.JFrame {
         textoUsuario.setText(trabajador.getUsuario());
         textoContraseña.setText(trabajador.getContraseña());
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
+    }
+    
     /**
      * @param args the command line arguments
      */

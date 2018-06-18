@@ -9,10 +9,11 @@ import com.placeholder.PlaceHolder;
 import controlador.Logistica.ControladorLogistica;
 import vista.propiedad.Directorio;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import modelo.dao.dato.Logistica.Produccion;
@@ -379,7 +380,9 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(920, 470));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         contenedorBotones.setBackground(new java.awt.Color(0, 204, 204));
@@ -410,11 +413,11 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
         contenedorBotonesLayout.setHorizontalGroup(
             contenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(botonProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(botonProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(botonEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(botonEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -516,13 +519,27 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
 
     private void ponerImagenes(){
         Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
+        
         Propiedad.ponerImagenBotonOpciones(botonProduccion, Directorio.botonProduccion);
         Propiedad.ponerImagenBotonOpciones(botonEntrega, Directorio.botonEntrega);
+        
         Propiedad.ponerImagenBotonOpciones(botonAñadirProduccion, Directorio.opcionAñadir);
         Propiedad.ponerImagenBotonOpciones(botonActualizarProduccion, Directorio.opcionActualizar);
         Propiedad.ponerImagenBotonOpciones(botonEliminarProduccion, Directorio.opcionEliminar);
+        
+        Propiedad.ponerImagenBotonOpciones(botonFacturar, Directorio.botonFactura);
+        Propiedad.ponerImagenBotonOpciones(botonGuiaRemision, Directorio.botonGuia);
+        Propiedad.ponerImagenBotonOpciones(botonTransporte, Directorio.botonTransporte);
+        
     }
      
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
+    }
+    
     /**
      * @param args the command line arguments
      */

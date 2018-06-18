@@ -8,6 +8,8 @@ package vista.SistemaVentas;
 
 import com.toedter.calendar.JDateChooser;
 import controlador.Ventas.ControladorTarifa;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import modelo.dao.dato.Ventas.Tarifa;
@@ -82,8 +84,10 @@ public class FormularioTarifa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de nuevo Tarifa");
+        setIconImage(getIconImage());
         setMinimumSize(new java.awt.Dimension(500, 420));
         setPreferredSize(new java.awt.Dimension(500, 420));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -131,6 +135,14 @@ public class FormularioTarifa extends javax.swing.JFrame {
         fechaInicio.setDate(tarifa.getFechaInicio());
         fechaFin.setDate(tarifa.getFechaFin());
     }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(Directorio.logo));
+
+        return retValue;
+    }
+    
     /**
      * @param args the command line arguments
      */
