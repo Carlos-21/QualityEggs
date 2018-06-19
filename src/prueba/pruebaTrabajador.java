@@ -23,23 +23,23 @@ public class pruebaTrabajador {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        VentanaPrincipal vista = new VentanaPrincipal();
-//        
-//        IEmpleadoDAO modelo = FabricaDAO.instanciar().getEmpleadoDAO();
-//        
-//        ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista, modelo);
-//        
-//        vista.setControlador(controlador);
-//        vista.setVisible(true);
-//        vista.setLocationRelativeTo(null);
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date d = new Date();
-        System.out.println("as : "+d);
-        System.out.println("Fecha : "+formato.format(d));
+        VentanaPrincipal vista = new VentanaPrincipal();
         
-        PedidoDAO pedido = new PedidoDAO();
-        System.out.println("Tarifa : " + pedido.tarifaPaquetes());
+        IEmpleadoDAO modelo = FabricaDAO.instanciar().getEmpleadoDAO();
+        
+        ControladorTalentoHumano controlador = new ControladorTalentoHumano(vista, modelo);
+        
+        vista.setControlador(controlador);
+        vista.setVisible(true);
+        vista.setLocationRelativeTo(null);
+
+//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//        Date d = new Date();
+//        System.out.println("as : "+d);
+//        System.out.println("Fecha : "+formato.format(d));
+//        
+//        PedidoDAO pedido = new PedidoDAO();
+//        System.out.println("Tarifa : " + pedido.tarifaPaquetes());
     }
     
 }

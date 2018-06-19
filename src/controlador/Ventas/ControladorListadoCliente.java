@@ -78,7 +78,11 @@ public class ControladorListadoCliente implements ActionListener, KeyListener, M
     }
 
     @Override
-    public void keyPressed(KeyEvent evento) {
+    public void keyPressed(KeyEvent evento) {       
+    }
+
+    @Override
+    public void keyReleased(KeyEvent evento) {
         if(evento.getSource().equals(vista.getBusquedaDNI())){
             String busqueda = vista.getBusquedaDNI().getText();
             System.out.println("asfs : "+busqueda);
@@ -94,10 +98,6 @@ public class ControladorListadoCliente implements ActionListener, KeyListener, M
             
             mostrarDatosCliente(busqueda, 3);
         }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
     }
 
     @Override

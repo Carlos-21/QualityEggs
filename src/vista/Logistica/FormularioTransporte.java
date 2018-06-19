@@ -8,10 +8,15 @@ package vista.Logistica;
 
 import com.toedter.calendar.JDateChooser;
 import controlador.Logistica.ControladorProduccion;
+import gnu.io.CommPortIdentifier;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.OutputStream;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import gnu.io.SerialPort;
+import java.util.Enumeration;
+import javax.swing.JOptionPane;
 import modelo.dao.dato.Logistica.Produccion;
 import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
@@ -24,11 +29,17 @@ import vista.propiedad.Propiedad;
  */
 public class FormularioTransporte extends javax.swing.JFrame {
     private VentanaPrincipalProduccion ventana;
+    private OutputStream output = null;
+    private SerialPort serialPort;
+    private static final String PUERTO = "COM3";
+    private static final int TIMEOUT = 2000;
+    private static final int DATE_RATE = 9600;
     
     public FormularioTransporte() {
         initComponents();
         this.getContentPane().setBackground(Colores.fondoFormulario);
         ponerImagenes();
+        Conectar();
     }
 
     public JButton getBotonAtras() {
@@ -87,6 +98,11 @@ public class FormularioTransporte extends javax.swing.JFrame {
 
         botonEnviar.setBackground(new java.awt.Color(255, 127, 0));
         botonEnviar.setText("Enviar");
+        botonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEnviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,6 +148,11 @@ public class FormularioTransporte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEnviarActionPerformed
+        enviarDatos(textoCantidad.getText());
+        JOptionPane.showMessageDialog(null, "Enviado");
+    }//GEN-LAST:event_botonEnviarActionPerformed
+
     private void ponerImagenes(){
         Propiedad.ponerImagenBoton(botonAtras, Directorio.botonAtras);
         Propiedad.ponerImagenBoton(botonSalir, Directorio.botonSalir);
@@ -141,6 +162,38 @@ public class FormularioTransporte extends javax.swing.JFrame {
     
     public void llenarFormulario(Produccion produccion){
         textoCantidad.setText(produccion.getCodigo());     
+    }
+    public void Conectar(){
+        CommPortIdentifier puertoID = null;
+        Enumeration puertoEnum = CommPortIdentifier.getPortIdentifiers();
+    
+        while(puertoEnum.hasMoreElements()){
+            CommPortIdentifier actualPuertoID = (CommPortIdentifier) puertoEnum.nextElement();
+            if(PUERTO.equals(actualPuertoID.getName())){
+                puertoID = actualPuertoID;
+                break;
+            }
+        }
+        
+        if(puertoID == null){
+            //error
+        }
+        
+        try{
+            serialPort = (SerialPort) puertoID.open(this.getClass().getName(), TIMEOUT);
+            serialPort.setSerialPortParams(DATE_RATE, SerialPort.DATABITS_8, SerialPort.STOPBITS_2, SerialPort.PARITY_NONE);
+            output = serialPort.getOutputStream();
+        }catch(Exception e){
+            
+        }
+    }
+    
+    private void enviarDatos(String datos){
+        try{
+            output.write(datos.getBytes());
+        }catch(Exception e){
+            System.out.println("error");
+        }
     }
     /**
      * @param args the command line arguments
