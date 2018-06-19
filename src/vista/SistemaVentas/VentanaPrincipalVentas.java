@@ -282,18 +282,22 @@ public class VentanaPrincipalVentas extends javax.swing.JFrame {
     }
    
     public void setControlador(ControladorVentas c){
+        botonCliente.addActionListener(c);
         botonAñadirCliente.addActionListener(c);
         botonActualizarCliente.addActionListener(c);
         botonEliminarCliente.addActionListener(c);
 
+        botonPedido.addActionListener(c);
         botonAñadirPedido.addActionListener(c);
         botonActualizarPedido.addActionListener(c);
         botonEliminarPedido.addActionListener(c);
         
+        botonTarifa.addActionListener(c);
         botonAñadirTarifa.addActionListener(c);
         botonActualizarTarifa.addActionListener(c);
         botonEliminarTarifa.addActionListener(c);
         
+        botonPago.addActionListener(c);
         botonAñadirPago.addActionListener(c);
         
         busquedaDNI.addKeyListener(c);

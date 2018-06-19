@@ -98,7 +98,7 @@ public class ControladorVentas implements ActionListener, KeyListener, MouseList
         
         
         if(evento.getSource().equals(vista.getBotonPedido())){
-            
+            mostrarDatosPedido("", 0);
         }
         
         if(evento.getSource().equals(vista.getBotonAñadirPedido())){

@@ -14,11 +14,13 @@ import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.dao.Conexion.ConexionArduino;
 import modelo.dao.dato.Logistica.Produccion;
 import modelo.dao.dato.Ventas.Pedido;
 import modelo.dao.diseño.Logistica.IProduccionDAO;
 import modelo.dao.diseño.Ventas.IPedidoDAO;
 import vista.Logistica.FormularioProduccion;
+import vista.Logistica.FormularioTransporte;
 import vista.Logistica.VentanaPrincipalProduccion;
 import vista.propiedad.Colores;
 import vista.propiedad.Directorio;
@@ -87,9 +89,27 @@ public class ControladorLogistica implements ActionListener, KeyListener, MouseL
             vista.dispose();
         }
         
-        if(evento.getSource().equals(vista.getBounds())){
+        if(evento.getSource().equals(vista.getBotonEntrega())){
             mostrarDatosPedidoPagados("", 0);
         }
+        
+        if(evento.getSource().equals(vista.getBotonTransporte())){
+            this.vista.dispose();
+            
+            FormularioTransporte vista = new FormularioTransporte();
+            vista.setVentana(this.vista);
+            vista.llenarFormulario(this.vista.getPedidosPagados().get(this.vista.getFilaPedidoPagado()));
+            vista.setTitle("Transporte de pedido");
+            Propiedad.ponerImagenBotonOpciones(vista.getBotonEnviar(), Directorio.botonEnviar);
+            
+            ConexionArduino modelo = new ConexionArduino();
+            
+            ControladorTransporte controlador = new ControladorTransporte(vista, modelo);
+            vista.setControlador(controlador);
+            vista.setVisible(true);
+            vista.setLocationRelativeTo(null);
+        }
+        
         mostrarDatosProduccion("", 0);
         mostrarDatosPedidoPagados("", 0);
     }

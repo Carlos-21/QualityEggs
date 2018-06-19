@@ -52,7 +52,7 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
         posicion1 = botonEntrega.getLocation();
         posicion2 = botonProduccion.getLocation();
         tamaño = botonEntrega.getPreferredSize();
-        tamaño2 = botonEntrega.getSize();
+        tamaño2 = botonEntrega.getPreferredSize();
     }
 
     public JButton getBotonActualizarProduccion() {
@@ -413,23 +413,24 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
         contenedorBotonesLayout.setHorizontalGroup(
             contenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(botonProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(botonEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(contenedorBotonesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorBotonesLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(contenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botonEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         contenedorBotonesLayout.setVerticalGroup(
             contenedorBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorBotonesLayout.createSequentialGroup()
-                .addGap(160, 160, 160)
+                .addGap(165, 165, 165)
                 .addComponent(botonProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(39, 39, 39)
                 .addComponent(botonEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
+                .addGap(129, 129, 129)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -460,13 +461,13 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
             panelMostrarPedido.setBounds(0, 0 ,tamañoPanel.width, tamañoPanel.height);
             panelMostrar.add(panelMostrarPedido);
             
-            botonFacturar.setBounds(posicionX + 10, posicionY + 47, tamaño.width - 20, tamaño.height-13);
+            botonFacturar.setBounds(posicionX + 15, posicionY + 47, tamaño.width, tamaño.height-13);
             contenedorBotones.add(botonFacturar);
 
-            botonGuiaRemision.setBounds(posicionX + 10, posicionY + 77, tamaño.width - 20, tamaño.height-13);
+            botonGuiaRemision.setBounds(posicionX + 15, posicionY + 77, tamaño.width, tamaño.height-13);
             contenedorBotones.add(botonGuiaRemision);
 
-            botonTransporte.setBounds(posicionX + 10, posicionY + 107, tamaño.width - 20, tamaño.height-13);
+            botonTransporte.setBounds(posicionX + 15, posicionY + 107, tamaño.width, tamaño.height-13);
             contenedorBotones.add(botonTransporte);         
             
             bandera = false;
@@ -491,16 +492,16 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
             panelMostrarProduccion.setBounds(0, 0 ,tamañoPanel.width, tamañoPanel.height);
             panelMostrar.add(panelMostrarProduccion);
             
-            botonAñadirProduccion.setBounds(posicionX + 15, posicionY + 47, tamaño2.width - 30, tamaño2.height - 13);
+            botonAñadirProduccion.setBounds(posicionX + 15, posicionY + 47, tamaño2.width - 25, tamaño2.height - 13);
             contenedorBotones.add(botonAñadirProduccion);
 
-            botonActualizarProduccion.setBounds(posicionX + 15, posicionY + 77, tamaño2.width - 30, tamaño2.height - 13);
+            botonActualizarProduccion.setBounds(posicionX + 15, posicionY + 77, tamaño2.width - 25, tamaño2.height - 13);
             contenedorBotones.add(botonActualizarProduccion);
 
-            botonEliminarProduccion.setBounds(posicionX + 15, posicionY + 107, tamaño2.width - 30, tamaño2.height - 13);
+            botonEliminarProduccion.setBounds(posicionX + 15, posicionY + 107, tamaño2.width - 25, tamaño2.height - 13);
             contenedorBotones.add(botonEliminarProduccion);
             
-            botonEntrega.setBounds(posicion1.x, posicion1.y + 70, tamaño.width, tamaño.height);
+            botonEntrega.setBounds(posicion1.x, posicion1.y + 70, tamaño.width + 24, tamaño.height);
             contenedorBotones.add(botonEntrega);
             
             bandera2 = false;
@@ -510,7 +511,7 @@ public class VentanaPrincipalProduccion extends javax.swing.JFrame {
             contenedorBotones.remove(botonActualizarProduccion);
             contenedorBotones.remove(botonEliminarProduccion);
             
-            botonEntrega.setBounds(posicion1.x, posicion1.y, tamaño.width, tamaño.height);
+            botonEntrega.setBounds(posicion1.x, posicion1.y, tamaño.width + 24, tamaño.height);
             contenedorBotones.add(botonEntrega);
             
             bandera2 = true;
