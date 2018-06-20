@@ -20,4 +20,5 @@ public interface IPedidoDAO {
     public abstract boolean consultarAlmacen(int cantidad);
     public abstract boolean actualizarStock(int cantidad);
     public abstract double tarifaPaquetes();
+    public abstract boolean cambiarEstado(String codigoPedido);
 }

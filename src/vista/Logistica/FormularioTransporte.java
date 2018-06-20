@@ -10,6 +10,8 @@ import controlador.Logistica.ControladorTransporte;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import modelo.dao.dato.Ventas.Pedido;
 import vista.propiedad.Colores;
@@ -23,6 +25,7 @@ import vista.propiedad.Propiedad;
  */
 public class FormularioTransporte extends javax.swing.JFrame {
     private VentanaPrincipalProduccion ventana;
+    private String codigoPedido;
     
     public FormularioTransporte() {
         initComponents();
@@ -44,6 +47,18 @@ public class FormularioTransporte extends javax.swing.JFrame {
 
     public JTextField getTextoCantidad() {
         return textoCantidad;
+    }
+
+    public JProgressBar getProgreso() {
+        return progreso;
+    }
+
+    public JLabel getTextoPorcentaje() {
+        return textoPorcentaje;
+    }
+
+    public String getCodigoPedido() {
+        return codigoPedido;
     }
 
     public VentanaPrincipalProduccion getVentana() {
@@ -76,13 +91,16 @@ public class FormularioTransporte extends javax.swing.JFrame {
         textoCantidad = new javax.swing.JTextField();
         botonEnviar = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        progreso = new javax.swing.JProgressBar();
+        jLabel1 = new javax.swing.JLabel();
+        textoPorcentaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Transporte");
         setBackground(new java.awt.Color(255, 204, 102));
         setIconImage(getIconImage());
-        setMinimumSize(new java.awt.Dimension(500, 320));
-        setPreferredSize(new java.awt.Dimension(444, 320));
+        setMinimumSize(new java.awt.Dimension(500, 375));
+        setPreferredSize(new java.awt.Dimension(444, 375));
         setResizable(false);
 
         label1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -93,23 +111,36 @@ public class FormularioTransporte extends javax.swing.JFrame {
         botonEnviar.setBackground(new java.awt.Color(255, 127, 0));
         botonEnviar.setText("Enviar");
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel1.setText("Porcentaje :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(247, 247, 247)
-                .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(label1)
-                .addGap(40, 40, 40)
-                .addComponent(textoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(350, 350, 350)
-                .addComponent(botonEnviar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(247, 247, 247)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(350, 350, 350)
+                        .addComponent(botonEnviar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label1)
+                                .addGap(40, 40, 40)
+                                .addComponent(textoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(progreso, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textoPorcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +155,13 @@ public class FormularioTransporte extends javax.swing.JFrame {
                     .addComponent(textoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(botonEnviar)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textoPorcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(progreso, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
         );
 
         botonAtras.setOpaque(false);
@@ -146,6 +183,7 @@ public class FormularioTransporte extends javax.swing.JFrame {
     
     public void llenarFormulario(Pedido pedido){
         textoCantidad.setText(String.valueOf(pedido.getCantidadPaquetes()));     
+        codigoPedido = pedido.getCodigoPedido();
     }
 
     /**
@@ -194,7 +232,10 @@ public class FormularioTransporte extends javax.swing.JFrame {
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEnviar;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel label1;
+    private javax.swing.JProgressBar progreso;
     private javax.swing.JTextField textoCantidad;
+    private javax.swing.JLabel textoPorcentaje;
     // End of variables declaration//GEN-END:variables
 }

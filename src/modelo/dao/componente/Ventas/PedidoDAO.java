@@ -243,4 +243,26 @@ public class PedidoDAO implements IPedidoDAO{
         return pedidos;
     }
 
+    @Override
+    public boolean cambiarEstado(String codigoPedido) {
+        MongoDatabase base = DataBaseConexion.getBaseDatos();
+        MongoCollection coleccion = base.getCollection("Pedido");
+        
+        long cantidadInicial = base.getCollection("Pedido").count();
+        
+        Bson filtro = new Document("Codigo", codigoPedido);
+        BasicDBObject dato = new BasicDBObject("$set", new BasicDBObject("Estado", "entregado"));
+        
+        coleccion.updateOne(filtro, dato);
+        
+        long cantidadFinal = base.getCollection("Pedido").count();
+        
+        if(cantidadInicial == cantidadFinal){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

@@ -11,10 +11,10 @@
       <Connection component="Form" name="iconImage" type="property"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[500, 320]"/>
+      <Dimension value="[500, 375]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[444, 320]"/>
+      <Dimension value="[444, 375]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -38,20 +38,35 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-              <Component id="botonAtras" min="-2" pref="63" max="-2" attributes="0"/>
-              <EmptySpace min="247" pref="247" max="-2" attributes="0"/>
-              <Component id="botonSalir" min="-2" pref="63" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
-              <Component id="label1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-              <Component id="textoCantidad" min="-2" pref="194" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="350" pref="350" max="-2" attributes="0"/>
-              <Component id="botonEnviar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                      <Component id="botonAtras" min="-2" pref="63" max="-2" attributes="0"/>
+                      <EmptySpace min="247" pref="247" max="-2" attributes="0"/>
+                      <Component id="botonSalir" min="-2" pref="63" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="350" pref="350" max="-2" attributes="0"/>
+                      <Component id="botonEnviar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="70" pref="70" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="label1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                              <Component id="textoCantidad" min="-2" pref="194" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="progreso" min="-2" pref="317" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textoPorcentaje" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,14 +78,21 @@
                   <Component id="botonAtras" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="botonSalir" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="60" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="label1" min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="textoCantidad" min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
               <Component id="botonEnviar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="94" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="textoPorcentaje" max="32767" attributes="0"/>
+                  <Component id="progreso" pref="20" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -106,6 +128,18 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="botonSalir.setOpaque(false);&#xd;&#xa;botonSalir.setContentAreaFilled(false);&#xd;&#xa;botonSalir.setBorderPainted(false);"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JProgressBar" name="progreso">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Porcentaje :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="textoPorcentaje">
     </Component>
   </SubComponents>
 </Form>

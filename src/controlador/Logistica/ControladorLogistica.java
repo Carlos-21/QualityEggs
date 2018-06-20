@@ -101,10 +101,11 @@ public class ControladorLogistica implements ActionListener, KeyListener, MouseL
             vista.llenarFormulario(this.vista.getPedidosPagados().get(this.vista.getFilaPedidoPagado()));
             vista.setTitle("Transporte de pedido");
             Propiedad.ponerImagenBotonOpciones(vista.getBotonEnviar(), Directorio.botonEnviar);
+            int cantidad = this.vista.getPedidosPagados().get(this.vista.getFilaPedidoPagado()).getCantidadPaquetes();
             
-            ConexionArduino modelo = new ConexionArduino();
+            ConexionArduino modelo = new ConexionArduino(vista.getTextoPorcentaje(), vista.getProgreso(), cantidad);
             
-            ControladorTransporte controlador = new ControladorTransporte(vista, modelo);
+            ControladorTransporte controlador = new ControladorTransporte(vista, modelo, modelo2);
             vista.setControlador(controlador);
             vista.setVisible(true);
             vista.setLocationRelativeTo(null);
